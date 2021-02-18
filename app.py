@@ -3,7 +3,9 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-    return 'this is home!!'
+    with open("html/index.html", 'r', encoding='utf8') as f:
+        html = f.read()
+    return html
 
 @app.route('/hello')
 def hello_world():
