@@ -18,6 +18,12 @@ def content(title):
         content = f.read() 
     return render_template('template.html', title=title, content=content, menus=menus)
 
+@app.route('/create')
+def create():
+    import os 
+    menus = os.listdir('content')
+    return render_template('create.html', menus=menus)
+
 @app.route('/movies/<num>')
 def movie(num):
 

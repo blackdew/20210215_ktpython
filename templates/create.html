@@ -1,0 +1,25 @@
+<!doctype html>
+<html>
+<head>
+  <title>WEB - Create</title>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="/style/style.css">
+</head>
+<body>
+  <h1><a href="/">WEB</a></h1>
+  <div id="grid">
+    <ol>
+      {% for m in menus %}
+      <li><a href="/{{ m }}">{{ m }}</a></li>
+      {% endfor %}
+    </ol>
+    <div id="article">
+        <form action='/create' method='post'>
+            <input type='text' name='title' placeholder="title"><br>
+            <textarea name='content' placeholder="description..."></textarea><br>
+            <input type='submit'><br>
+        </form>
+    </div>
+  </div>
+  </body>
+  </html>
