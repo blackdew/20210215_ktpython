@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request, redirect
 app = Flask(__name__, template_folder='templates', static_folder='style')
 app.config['ENV'] = 'development'
 app.config['DEBUG'] = True
@@ -22,11 +22,16 @@ def content(title):
         content = f.read() 
     return render_template('template.html', title=title, content=content, menus=menus)
 
-@app.route('/create')
+@app.route('/create', methods=['get', 'post'])
 def create():
     import os 
     menus = os.listdir('content')
-    return render_template('create.html', menus=menus)
+
+    if request.method == 'GET':
+        return render_template('create.html', menus=menus)
+    else:
+        return redirect('/')
+    
 
 @app.route('/movies/<num>')
 def movie(num):
