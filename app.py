@@ -11,9 +11,12 @@ def index():
 
 @app.route('/<title>')
 def content(title):
+    import os 
+    menus = os.listdir('content')
+    
     with open(f'content/{title}', 'r', encoding='utf8') as f:
         content = f.read() 
-    return render_template('template.html', title=title, content=content)
+    return render_template('template.html', title=title, content=content, menus=menus)
 
 @app.route('/movies/<num>')
 def movie(num):
