@@ -27,5 +27,9 @@ def js():
         txt = f.read()
     return txt
 
+@app.route('/movies')
+def movie():
+    return "hello movie"
+
 if __name__ == '__main__':
     app.run()
