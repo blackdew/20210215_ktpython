@@ -27,9 +27,9 @@ def js():
     content = "JavaScript (/ˈdʒɑːvəˌskrɪpt/), often abbreviated as JS, is a high-level, dynamic, weakly typed, object-based, multi-paradigm, and interpreted programming language. Alongside HTML and CSS, JavaScript is one of the three core technologies of World Wide Web content production. It is used to make webpages interactive and provide online programs, including video games. The majority of websites employ it, and all modern web browsers support it without the need for plug-ins by means of a built-in JavaScript engine. Each of the many JavaScript engines represent a different implementation of JavaScript, all based on the ECMAScript specification, with some engines not supporting the spectrum fully, and with many engines supporting additional features beyond ECMA."
     return render_template('template.html', title=title, content=content)
 
-@app.route('/movies')
-def movie():
-    return "hello movie 11111 2222"
+@app.route('/movies/<num>')
+def movie(num):
+    return f"hello movie. {num}"
 
 @app.route('/daum')
 def daum():
