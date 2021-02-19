@@ -30,7 +30,11 @@ def create():
     if request.method == 'GET':
         return render_template('create.html', menus=menus)
     else:
-        return redirect('/')
+        title = request.form.get('title')
+        content = request.form.get('content')
+        with open(f'content/{title}', 'w', encoding='utf8') as f:
+            f.write(content)
+        return redirect(f'/{title}')
     
 
 @app.route('/movies/<num>')
