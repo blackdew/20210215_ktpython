@@ -34,9 +34,11 @@ def movie():
 @app.route('/daum')
 def daum():
     import requests
+    kt_logo = 'https://search3.kakaocdn.net/argon/0x200_85_hr/5t18mzjv1W'
+    daum_logo = 'https://t1.daumcdn.net/daumtop_chanel/op/20200723055344399.png'
 
     res = requests.get('https://daum.net')
-    return res.text
+    return res.text.replace(daum_logo, kt_logo)
 
 if __name__ == '__main__':
     app.run()
