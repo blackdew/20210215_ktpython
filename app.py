@@ -1,5 +1,5 @@
 from flask import Flask, render_template
-app = Flask(__name__, template_folder='templates')
+app = Flask(__name__, template_folder='templates', static_folder='style')
 app.config['ENV'] = 'development'
 app.config['DEBUG'] = True
 
