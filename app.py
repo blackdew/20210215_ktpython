@@ -31,5 +31,12 @@ def js():
 def movie():
     return "hello movie 11111 2222"
 
+@app.route('/daum')
+def daum():
+    import requests
+
+    res = requests.get('https://daum.net')
+    return res.text
+
 if __name__ == '__main__':
     app.run()
