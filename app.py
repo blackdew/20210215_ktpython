@@ -29,7 +29,31 @@ def js():
 
 @app.route('/movies/<num>')
 def movie(num):
-    return f"hello movie. {num}"
+
+    import datetime, requests, bs4
+
+    def get_date(num=1):
+        datalist = [datetime.date.today() - datetime.timedelta(7 * i) for i in range(num)]
+        datalist = [d.strftime('%Y%m%d') for d in datalist]
+        return datalist
+
+    datelist = get_date(int(num))
+
+    movies = []
+    for d in datelist:
+        url = f"https://movie.daum.net/boxoffice/weekly?startDate={d}"
+        res = requests.get(url)
+
+        soup = bs4.BeautifulSoup(res.text, 'html.parser')
+        tags = soup.select('.desc_boxthumb')
+
+        movies += [{"날짜": d,
+                "제목": tag.strong.a.get_text(),
+                "평점": tag.em.get_text(),
+                "관객수": tag.select('.list_state dd')[0].get_text(),
+                "개봉일": tag.select('.list_state dd')[1].get_text()} for tag in tags]
+
+    return '<br>'.join(movies)
 
 @app.route('/daum')
 def daum():
