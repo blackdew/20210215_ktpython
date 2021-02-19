@@ -22,6 +22,12 @@ def content(title):
         content = f.read() 
     return render_template('template.html', title=title, content=content, menus=menus)
 
+@app.route('/<title>/delete')
+def delete(title):
+    import os
+    os.remove(f'content/{title}')
+    return redirect('/')
+
 @app.route('/create', methods=['get', 'post'])
 def create():
     import os 
