@@ -53,7 +53,7 @@ def movie(num):
                 "관객수": tag.select('.list_state dd')[0].get_text(),
                 "개봉일": tag.select('.list_state dd')[1].get_text()} for tag in tags]
 
-    return str(movies)
+    return render_template('movies.html', movies=movies)
 
 @app.route('/daum')
 def daum():
